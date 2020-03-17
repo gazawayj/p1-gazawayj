@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "U7t/Q74y8iNetdqVCzijKc7Rz3wRRa9rpsJNq8M7xcaNe58xeYfvui7sgQjAnusxOAi1xcctNJy/IIINKco4Qg==",
+  "success": true,
+  "projectFilePath": "/home/j/revature_project/p1/PizzaBox.Storage/PizzaBox.Storage.csproj",
+  "expectedPackageFiles": [
+    "/home/j/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/j/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
