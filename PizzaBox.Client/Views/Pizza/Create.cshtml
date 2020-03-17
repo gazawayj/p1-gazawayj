@@ -1,0 +1,25 @@
+@model PizzaBox.Client.Models.PizzaViewModel
+
+<form action="/pizza/create" method="post">
+  @Html.AntiForgeryToken()
+
+  <select asp-for="@Model.Crust">
+  @foreach (var item in @Model.CrustList)
+  {
+    <option value = "item">item</option>
+  }
+  </select>
+
+  @foreach (var item in @Model.SizeList)
+  {
+    @Html.RadioButtonFor(pvm => pvm.Size, item.Name)
+  }
+
+   @* @foreach (var item in @Model.ToppingList)
+  {
+    @Html.CheckBoxFor(pvm => pvm.Toppings..Name)
+  }  *@
+  
+  <button type="submit">Create</button>
+  
+</form>
