@@ -15,10 +15,10 @@
     @Html.RadioButtonFor(pvm => pvm.Size, item.Name)
   }
 
-   @* @foreach (var item in @Model.ToppingList)
+   @foreach (var item in @Model.ToppingList)
   {
-    @Html.CheckBoxFor(pvm => pvm.Toppings..Name)
-  }  *@
+    <input type="checkbox" name="@Model.Toppings" value="@item.Name" />
+  } 
   
   <button type="submit">Create</button>
   
