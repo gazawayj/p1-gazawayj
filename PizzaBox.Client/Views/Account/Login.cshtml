@@ -1,0 +1,19 @@
+@model PizzaBox.Client.Models.AccountViewModel
+
+<form action="/account/login" method="post">
+  @Html.AntiForgeryToken()
+  
+  <label asp-for="@Model.Username">Username</label>
+  <input type="text" asp-for="@Model.Username" />
+  @Html.ValidationMessageFor(avm => avm.Username)
+
+  <label asp-for="@Model.Password">Password</label>
+  <input type="text" asp-for="@Model.Password" />
+  @Html.ValidationMessageFor(avm => avm.Password)
+
+  <label asp-for=@Model.Store>Is a Store</label>
+  @Html.RadioButtonFor(avm => avm.Store, true)
+
+  <button type="reset" value="Reset" />
+  <button type="submit" value="Submit" />
+</form>

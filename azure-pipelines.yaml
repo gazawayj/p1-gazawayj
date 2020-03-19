@@ -1,0 +1,37 @@
+$(date:yyyyMMdd)$(rev:.rr) 
+
+pr:
+  - master
+
+trigger:
+  - master
+
+stages:
+  - stage: build
+    jobs:
+      - job: build_dotnet
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - script: dotnet build
+            workingdirectory: ./p1proj
+  - stage: test
+    jobs:
+      - job: test
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - script: dotnet test --collect:"XPlat Code Coverage"
+            workingdirectory: $(System.DefaultWorkingDirectory)/p1proj
+  - stage: pack
+    jobs:
+      - job: pack 
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - script: |
+              docker login
+              docker image build -f dockerfile -t gazawayj/p1proj 
+              docker image push gazawayj/p1proj
+              docker logout
+            workingdirectory: $(System.DefaultWorkingDirectory)/p1proj
