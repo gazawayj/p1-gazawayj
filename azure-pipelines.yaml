@@ -3,18 +3,16 @@ $(date:yyyyMMdd)$(rev:.rr)
 pr:
   - master
 
-trigger:
-  - master
-
 stages:
   - stage: build
     jobs:
-      - job: build_dotnet
+      - job:
         pool:
           vmImage: ubuntu-18.04
         steps:
           - script: dotnet build
-            workingdirectory: ./p1proj
+            workingDirectory: $(System.DefaultWorkingDirectory)/p1
+
   - stage: test
     jobs:
       - job: test
@@ -22,16 +20,19 @@ stages:
           vmImage: ubuntu-18.04
         steps:
           - script: dotnet test --collect:"XPlat Code Coverage"
-            workingdirectory: $(System.DefaultWorkingDirectory)/p1proj
+            workingdirectory: $(System.DefaultWorkingDirectory)/p1
   - stage: pack
     jobs:
       - job: pack 
         pool:
           vmImage: ubuntu-18.04
         steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'docker'
+              command: 'login'
           - script: |
-              docker login
-              docker image build -f dockerfile -t gazawayj/p1proj 
+              docker image build -f dockerfile -t gazawayj/p1
               docker image push gazawayj/p1proj
-              docker logout
-            workingdirectory: $(System.DefaultWorkingDirectory)/p1proj
+            workingdirectory: $(System.DefaultWorkingDirectory)/p1
+            
