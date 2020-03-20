@@ -1,5 +1,4 @@
 $(date:yyyyMMdd)$(rev:.rr)
-
 pr:
   - master
 
