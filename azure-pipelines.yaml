@@ -1,4 +1,4 @@
-$(date:yyyyMMdd)$(rev:.rr) 
+$(date:yyyyMMdd)$(rev:.rr)
 
 pr:
   - master
